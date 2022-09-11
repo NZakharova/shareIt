@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import ru.yandex.practicum.shareit.utils.DuplicateObjectException;
+import ru.yandex.practicum.shareit.utils.InvalidObjectException;
 import ru.yandex.practicum.shareit.utils.ObjectNotFoundException;
 import ru.yandex.practicum.shareit.utils.ValidationException;
 
@@ -18,6 +19,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<String> handleDuplicateObject(DuplicateObjectException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<String> handleInvalidObject(InvalidObjectException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler

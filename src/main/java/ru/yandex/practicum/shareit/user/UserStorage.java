@@ -6,6 +6,7 @@ public interface UserStorage {
     int add(User user);
 
     User find(int id);
+
     Collection<User> findAll();
 
     void updateName(int id, String name);

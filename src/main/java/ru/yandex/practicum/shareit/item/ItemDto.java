@@ -1,16 +1,15 @@
 package ru.yandex.practicum.shareit.item;
 
+import lombok.Builder;
 import lombok.Data;
-import lombok.NonNull;
 
 @Data
+@Builder(toBuilder = true)
 public class ItemDto {
-    private final int userId;
-    private final int id;
-    @NonNull
+    private final Integer userId;
+    private final Integer id;
     private final String name;
     private final String description;
-
-    private final boolean available;
+    private final Boolean available;
 }
 

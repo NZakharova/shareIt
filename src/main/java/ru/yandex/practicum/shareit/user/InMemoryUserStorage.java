@@ -49,21 +49,14 @@ public class InMemoryUserStorage implements UserStorage {
 
     @Override
     public void updateName(int id, String name) {
-        var existing = users.get(id);
-        if (existing == null) {
-            throw new ObjectNotFoundException(id);
-        }
-
+        var existing = find(id);
         var updated = existing.toBuilder().name(name).build();
         users.replace(id, updated);
     }
 
     @Override
     public void updateEmail(int id, String email) {
-        var existing = users.get(id);
-        if (existing == null) {
-            throw new ObjectNotFoundException(id);
-        }
+        var existing = find(id);
 
         if (emails.containsKey(email)) {
             throw new DuplicateObjectException("email");
